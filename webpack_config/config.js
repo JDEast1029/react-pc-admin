@@ -39,5 +39,6 @@ exports.defPath = {
     BUILD_PATH                 :path.resolve(ROOT_PATH, './dist'),
     TPL_PATH                   :path.resolve(ROOT_PATH, './src/index.tpl.html'),
     COMPONENTS_PATH            :path.resolve(ROOT_PATH, './src/components'),
-    NODE_MODULES               :path.resolve(ROOT_PATH, './node_modules')
+    NODE_MODULES               :path.resolve(ROOT_PATH, './node_modules'),
+    CACHE_PATH                 :path.resolve(ROOT_PATH, './cache')
 }
