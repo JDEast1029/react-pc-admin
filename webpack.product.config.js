@@ -16,6 +16,11 @@ module.exports = webpackMerge(baseConfig(), {
      * product: cheap-module-source-map
      */
     devtool: "cheap-module-source-map",
+
+    entry: {
+        app: ENTRY_PATH,
+        vendor: config.vendor
+    },
     
     plugins: [
         // new WebpackMd5Hash(), // 取代标准webpack chunkhash

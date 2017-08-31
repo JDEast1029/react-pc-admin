@@ -16,16 +16,6 @@ const {
 module.exports = function () {
     return {
         /**
-         * 如果是字符串，output输出的名字是 ‘main’
-         * 如果是object，output输出的名字是 key的名称
-         */
-        entry: {
-            app: [
-                'react-hot-loader/patch', 'webpack/hot/only-dev-server', ENTRY_PATH
-            ],
-            vendor: config.vendor // 公共文件单独打包
-        },
-        /**
          * [name]     : 使用入口名称
          * [id]       : 使用内部 chunk id
          * [hash]     : 使用每次构建过程中，唯一的 hash 生成

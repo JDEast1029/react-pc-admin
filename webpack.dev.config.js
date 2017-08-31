@@ -1,18 +1,13 @@
-const path                  = require('path')
-const webpackMerge          = require('webpack-merge');
-const webpack               = require('webpack');
-const HtmlWebpackPlugin     = require('html-webpack-plugin');
-const ExtractTextPlugin     = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin    = require('clean-webpack-plugin');
+const path = require('path')
+const webpackMerge = require('webpack-merge');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const baseConfig               = require('./webpack_config/base');
-const config                   = require('./webpack_config/config');
-const {
-ROOT_PATH,
-APP_PATH, 
-BUILD_PATH, 
-ENTRY_PATH 
-} = config.defPath;
+const baseConfig = require('./webpack_config/base');
+const config = require('./webpack_config/config');
+const {ROOT_PATH, APP_PATH, BUILD_PATH, ENTRY_PATH} = config.defPath;
 
 // 使用 `webpack-merge` 将基础配置和新配置合并
 module.exports = webpackMerge(baseConfig(), {
@@ -22,6 +17,19 @@ module.exports = webpackMerge(baseConfig(), {
     * product: cheap-module-source-map
     */
     devtool: "cheap-module-eval-source-map",
+
+    /**
+         * 如果是字符串，output输出的名字是 ‘main’
+         * 如果是object，output输出的名字是 key的名称
+         */
+    entry: {
+        app: [
+            'react-hot-loader/patch', 
+            'webpack/hot/only-dev-server', 
+            ENTRY_PATH
+        ],
+        vendor: config.vendor // 公共文件单独打包
+    },
 
     plugins: [
         // 热模块替换相关插件
