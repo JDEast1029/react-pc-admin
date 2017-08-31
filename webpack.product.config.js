@@ -27,7 +27,7 @@ module.exports = webpackMerge(baseConfig(), {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        new CleanWebpackPlugin(['build'], {
+        new CleanWebpackPlugin(['dist'], {
             root: ROOT_PATH,
             verbose: true,
             dry: false
