@@ -52,6 +52,6 @@ module.exports = webpackMerge(baseConfig(), {
             .UglifyJsPlugin(config.uglifyJsConfig),
         new webpack
             .optimize
-            .CommonsChunkPlugin({names: ['vendor'], filename: 'common-[hash:6].js', minChunks: Infinity})
+            .CommonsChunkPlugin({names: ['vendor'], filename: 'js/common-[hash:6].js', minChunks: Infinity})
     ]
 })

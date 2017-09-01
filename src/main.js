@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './App';
+import Root from './routers/Root';
 
 const renderApp = () => {
     ReactDOM.render(
@@ -18,7 +18,7 @@ renderApp();
 if (module.hot && process.env.NODE_ENV !== 'production') {
     module
         .hot
-        .accept('./App.js', () => {
+        .accept('./routers/Root', () => {
             renderApp()
         });
 }

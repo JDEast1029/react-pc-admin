@@ -7,7 +7,9 @@ const config = require('./config'); // 引入配置
 const {
     APP_PATH,
     COMPONENTS_PATH,
-    TPL_PATH, ROOT_PATH,
+    CONTAINERS_PATH,
+    TPL_PATH,
+    ROOT_PATH,
     NODE_MODULES,
     ENTRY_PATH,
     BUILD_PATH
@@ -85,7 +87,8 @@ module.exports = function () {
              * 创建 import 或 require 的别名，来确保模块引入变得更简单
              */
             alias: {
-                components: COMPONENTS_PATH
+                components: COMPONENTS_PATH,
+                containers: CONTAINERS_PATH
             }
         },
         cache: true, // 启用缓存
@@ -100,13 +103,16 @@ module.exports = function () {
                         cacheDirectory: true
                     }
                 }, {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: "style-loader",
-                        use: ["css-loader", "postcss-loader"]
-                    })
+                    test: /\.less$/,
+                    use: ['style-loader', 'css-loader', 'less-loader']
                 }, {
                     test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: "style-loader",
+                        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+                    })
+                }, {
+                    test: /\.(css|scss)$/,
                     use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
                 }, {
                     test: /\.(png|jpg|gif)$/,
