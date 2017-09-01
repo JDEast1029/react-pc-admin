@@ -28,27 +28,28 @@ module.exports = function () {
          */
         output: {
             /**
-         * filename:每个输出 bundle 的名称 -- 相对路径
-         */
+             * filename:每个输出 bundle 的名称 -- 相对路径
+             */
             filename: 'js/[name].[hash:8].bundle.js',
             /**
-         * path: 存放bundle的目录路径
-         */
+             * path: 存放bundle的目录路径
+             */
             path: BUILD_PATH,
             /**
-         * chunkFilename:按需加载的文件命名 -- 相对路径
-         */
+             * chunkFilename:按需加载的文件命名 -- 相对路径
+             */
             chunkFilename: 'js/[name].[chunkhash:6].chunk.js',
             /**
-         * 指定output directory在浏览器中的url
-         */
-            publicPath: '/',
-            /**
-         * 指定编译产生的'.map'文件的存放位置
-         * [file] 原始文件的文件名 eg: css文件产生的.map 原始文件名为 ExtractTextPlugin 中的filename
-         *
-         * 建议只使用 [file] 占位符，因为其他占位符在非 chunk 文件生成的 SourceMap 时不起作用
-         */
+             * 指定output directory在浏览器中的url
+             * 即打包后会在资源路径前加该publicPath的值
+             */
+            publicPath: './',
+             /**
+             * 指定编译产生的'.map'文件的存放位置
+             * [file] 原始文件的文件名 eg: css文件产生的.map 原始文件名为 ExtractTextPlugin 中的filename
+             *
+             * 建议只使用 [file] 占位符，因为其他占位符在非 chunk 文件生成的 SourceMap 时不起作用
+             */
             sourceMapFilename: "sourceMap/[file].map"
         },
 
@@ -102,19 +103,19 @@ module.exports = function () {
                     options: {
                         cacheDirectory: true
                     }
-                },{
+                }, {
                     test: /\.css$/,
                     use: ['style-loader', 'css-loader', 'postcss-loader']
-                },{
+                }, {
                     test: /\.less$/,
                     use: ['style-loader', 'css-loader', 'less-loader']
-                },{
+                }, {
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract({
                         fallback: "style-loader",
                         use: ["css-loader", "postcss-loader", "sass-loader"]
                     })
-                },{
+                }, {
                     test: /\.(png|jpg|gif)$/,
                     use: [
                         {
