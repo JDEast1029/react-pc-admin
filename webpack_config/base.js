@@ -102,19 +102,19 @@ module.exports = function () {
                     options: {
                         cacheDirectory: true
                     }
-                }, {
+                },{
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader', 'postcss-loader']
+                },{
                     test: /\.less$/,
                     use: ['style-loader', 'css-loader', 'less-loader']
-                }, {
+                },{
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract({
                         fallback: "style-loader",
-                        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+                        use: ["css-loader", "postcss-loader", "sass-loader"]
                     })
-                }, {
-                    test: /\.(css|scss)$/,
-                    use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-                }, {
+                },{
                     test: /\.(png|jpg|gif)$/,
                     use: [
                         {

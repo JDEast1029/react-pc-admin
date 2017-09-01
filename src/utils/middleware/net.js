@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { message } from 'antd';
 
 const net = (store) => (next) => (action) => {
     const { 
@@ -16,7 +17,6 @@ const net = (store) => (next) => (action) => {
     let method = action.method.toUpperCase();
     let request = null;
 
-    NProgress.start();
     if (method === 'GET') {
         request = axios.get(url, {
             params: {
@@ -34,7 +34,7 @@ const net = (store) => (next) => (action) => {
         onSuccess && onSuccess(response)
     })
     .catch((error) => {
-        setTimeout(() => {NProgress.done()}, 1000)
+        message.error('aaa')
         onError && onError(error)
     })
 }

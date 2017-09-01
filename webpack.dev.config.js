@@ -38,11 +38,6 @@ module.exports = webpackMerge(baseConfig(), {
         // 定义环境变量
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
-        }),
-        new CleanWebpackPlugin(['dist'], {
-            root: ROOT_PATH,
-            verbose: true,
-            dry: false
         })
     ],
 
