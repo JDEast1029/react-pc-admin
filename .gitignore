@@ -4,6 +4,8 @@
 /node_modules
 #cache
 /cache
+#idea
+/.idea
 
 # misc
 .DS_Store

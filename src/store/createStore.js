@@ -25,4 +25,17 @@ const store = createStore(
     enhancer
 );
 
+/**
+ * warning.js:11 <Provider> does not support changing `store` on the fly 问题
+ * 按照文档，但没有效果
+ */
+if (module.hot && process.env.NODE_ENV !== 'production') {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers/index').default;
+      store.replaceReducer(nextRootReducer);
+    });
+}
+
+
 export default store;

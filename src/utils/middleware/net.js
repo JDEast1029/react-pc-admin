@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { message } from 'antd';
+import NProgress from './nprogress/nprogressConfig';
 
 const net = (store) => (next) => (action) => {
     const { 
@@ -7,16 +8,16 @@ const net = (store) => (next) => (action) => {
         params, 
         onSuccess, 
         onError 
-    } = action
+    } = action;
     
     if (!url) {
         return next(action);
     }
 
-    console.log(url, 1)
     let method = action.method.toUpperCase();
     let request = null;
 
+    NProgress.set(0.4)
     if (method === 'GET') {
         request = axios.get(url, {
             params: {
@@ -34,9 +35,9 @@ const net = (store) => (next) => (action) => {
         onSuccess && onSuccess(response)
     })
     .catch((error) => {
-        message.error('aaa')
+         NProgress.done();
         onError && onError(error)
     })
-}
+};
 
 export default net;

@@ -21,6 +21,15 @@ class Login extends Component {
             },
         }
         this.props.actions.request(netParams);
+
+        let netParams1 = {
+            url: '/login/uer',
+            method: 'get',
+            params: {
+                id: '123'
+            },
+        }
+        this.props.actions.request(netParams1);
     }
 
     render() {
