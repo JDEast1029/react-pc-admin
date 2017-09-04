@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions/login'
+import * as actions from '../../../actions/login';
+import * as types from '../../../contants/actionTypes/login';
 
 //Test
 import NetStates from 'components/_common/NetStates/NetStates';
@@ -14,29 +15,24 @@ class Login extends Component {
 
     handleLogin() {
         let netParams = {
-            url: '/login',
+            type: types.LOGIN_GET,
             method: 'get',
             params: {
                 id: '123'
             },
-        }
+        };
         this.props.actions.request(netParams);
-
-        let netParams1 = {
-            url: '/login/uer',
-            method: 'get',
-            params: {
-                id: '123'
-            },
-        }
-        this.props.actions.request(netParams1);
     }
 
     render() {
+        const { loginReducer } = this.props;
+
         return (
-            <div onClick={this.handleLogin}>
-                登录
-            </div>
+            <NetStates netState={loginReducer.netState}>
+                <div onClick={this.handleLogin}>
+                    登录
+                </div>
+            </NetStates>
         );
     }
 }

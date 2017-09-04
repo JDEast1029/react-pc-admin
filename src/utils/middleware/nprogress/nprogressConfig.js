@@ -19,8 +19,8 @@ const init = () => {
                   '<div class="spinner" role="spinner">' + 
                     '<div class="spinner-icon"></div>' + 
                   '</div>'
-    })
+    });
     return NProgress;
-}
+};
 
 export default init();

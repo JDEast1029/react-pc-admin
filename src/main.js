@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './routers/Root';
+import './styles/reset.scss';
+import './styles/icon.scss';
+import './styles/color.scss';
 
 const renderApp = () => {
     ReactDOM.render(

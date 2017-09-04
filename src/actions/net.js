@@ -4,7 +4,7 @@
 
  export const request = (data) => {
      return {
-         url: data.url,
+         type: data.type,
          method: data.method,
          params: data.params
      }
