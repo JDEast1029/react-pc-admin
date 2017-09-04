@@ -6,8 +6,10 @@
 * react-hot-loader使用注意
 >必须使用npm i react-hot-loader@next --save-dev 安装
 * react-router 按需加载使用
->首先在 webpack.config.js 的 output 内加上 chunkFilename
-```js
+>
+```
+首先在 webpack.config.js 的 output 内加上 chunkFilename
+
  output: {
     filename: 'js/[name].[hash:8].bundle.js',
     path: BUILD_PATH,
@@ -15,9 +17,8 @@
     publicPath: './',
     sourceMapFilename: "sourceMap/[file].map"
 }
-```
 然后在用getComponents加载路由
-```js
+
 {
     path: '/login',
     getComponents: (nextState, callback) => {
