@@ -29,9 +29,9 @@ class Login extends Component {
 
         return (
             <NetStates netState={loginReducer.netState}>
-                <div onClick={this.handleLogin}>
+                <p onClick={this.handleLogin}>
                     登录
-                </div>
+                </p>
             </NetStates>
         );
     }
