@@ -38,7 +38,7 @@ module.exports = function () {
             /**
              * chunkFilename:按需加载的文件命名 -- 相对路径
              */
-            chunkFilename: 'js/[name].[chunkhash:6].chunk.js',
+            chunkFilename: 'js/[id].[name].[chunkhash:6].chunk.js',
             /**
              * 指定output directory在浏览器中的url
              * 即打包后会在资源路径前加该publicPath的值

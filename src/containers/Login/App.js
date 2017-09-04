@@ -3,12 +3,12 @@ import Login from './Modules/Login';
 const loginRoutes = [
     {
         path: '/login',
-        getComponents(nextState, callback) {
-            require.ensure([], function(require) {
-                callback(null, Login);
+        getComponents: (nextState, callback) => {
+            require.ensure([], (require) => {
+                callback(null, require('./Modules/Login').default);
             }, 'login');
-        },
+        }
     }
-]
+];
 
-export default  loginRoutes;
+export default loginRoutes;
