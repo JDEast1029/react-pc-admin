@@ -9,7 +9,6 @@
 >
 ```
 首先在 webpack.config.js 的 output 内加上 chunkFilename
-
  output: {
     filename: 'js/[name].[hash:8].bundle.js',
     path: BUILD_PATH,
@@ -17,8 +16,8 @@
     publicPath: './',
     sourceMapFilename: "sourceMap/[file].map"
 }
-然后在用getComponents加载路由
 
+然后在用getComponents加载路由
 {
     path: '/login',
     getComponents: (nextState, callback) => {
