@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import SymbolIcon from 'components/_common/Icon/SymbolIcon'; 
-import './Empty.scss';
+import './NotFound.scss';
 
 class Empty extends Component {
     render() {

@@ -15,8 +15,8 @@ const routes = [
         path: '*',
         getComponents: (nextState, callback) => {
             require.ensure([], (require) => {
-                callback(null, require('containers/NotExist/Empty').default);
-            }, 'empty');
+                callback(null, require('containers/NotFound/NotFound').default);
+            }, 'not-found');
         }
     }
 ];
