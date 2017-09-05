@@ -24,7 +24,7 @@ class Login extends Component {
                 this.props.actions.push('/home')
             },
             onError: () => {
-                this.props.actions.push('/home')
+                
             }
         };
         this.props.actions.request(netParams);

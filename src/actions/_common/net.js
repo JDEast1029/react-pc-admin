@@ -6,6 +6,8 @@
      return {
          type: data.type,
          method: data.method,
-         params: data.params
+         params: data.params,
+         onSuccess: data.onSuccess,
+         onError: data.onError
      }
  }

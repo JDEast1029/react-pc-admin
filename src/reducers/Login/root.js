@@ -14,7 +14,6 @@ const loginReducer = (state = initState, action) => {
                 ...state,
                 isLoading: true
             };
-            console.log(state, 1123);
             return state;
 		case types.LOGIN_GET + '_EMPTY':
         	state = {
