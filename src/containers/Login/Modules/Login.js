@@ -14,15 +14,15 @@ class Login extends Component {
     }
 
     handleLogin() {
-        let netParams = {
-            type: types.LOGIN_GET,
-            method: 'get',
-            params: {
-                id: '123'
-            },
-        };
-        this.props.actions.request(netParams);
-        // this.props.actions.push('/home')
+        // let netParams = {
+        //     type: types.LOGIN_GET,
+        //     method: 'get',
+        //     params: {
+        //         id: '123'
+        //     },
+        // };
+        // this.props.actions.request(netParams);
+        this.props.actions.push('/home')
     }
 
     render() {
