@@ -1,16 +1,13 @@
-.net-state {
-    text-align: center;
+.not-exist {
     position: relative;
+    text-align: center;
     height: 45%;
     background-color: #fff;
     padding: 0  0 80px;
     padding-right: 10%;
-    .error-icon {
-        height: 350px;
+    .not-exist-icon {
         width: 350px;
-    }
-    .empty-icon {
         height: 350px;
-        width: 350px
+        color: #999;
     }
 }

@@ -2,12 +2,14 @@
  * 没有路由匹配的页面
  */
 import React, { Component } from 'react';
+import SymbolIcon from 'components/_common/Icon/SymbolIcon'; 
+import './Empty.scss';
 
 class Empty extends Component {
     render() {
         return (
-            <div>
-                链接不存在
+            <div className="not-exist">
+                <SymbolIcon icon="icon-not-exist" className="not-exist-icon" />
             </div>
         );
     }
