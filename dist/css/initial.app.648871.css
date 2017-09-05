@@ -58,15 +58,6 @@
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
-.net-state {
-  text-align: center;
-  height: 100vh; }
-  .net-state .error-icon {
-    height: 3.5rem;
-    width: 3.5rem; }
-  .net-state .empty-icon {
-    height: 3.5rem;
-    width: 3.5rem; }
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -205,4 +196,4 @@ p {
 .g-fs-20 {
   font-size: 0.2rem; }
 
-/*# sourceMappingURL=../sourceMap/css/initial.app.01abd1.css.map*/
+/*# sourceMappingURL=../sourceMap/css/initial.app.648871.css.map*/
