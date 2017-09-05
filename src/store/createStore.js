@@ -2,14 +2,14 @@ const isDebug = (process.env.NODE_ENV !== 'production');
 // const DevTools = isDebug ? require('./devtools/DevTools').default : null ;
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import net from '../utils/middleware/net';
 import rootReducer from '../reducers';
 
 //添加路由的中间件,可以通过store.dispatch(push('/login'))来切换路由
-const router = routerMiddleware(browserHistory);
+const router = routerMiddleware(hashHistory);
 let enhancer;
 
 if(isDebug) {

@@ -22,7 +22,7 @@ class Login extends Component {
         //     },
         // };
         // this.props.actions.request(netParams);
-        this.props.actions.push('#/home')
+        this.props.actions.push('/home')
     }
 
     render() {
