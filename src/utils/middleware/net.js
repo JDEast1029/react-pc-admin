@@ -74,7 +74,9 @@ const net = (store) => (next) => (action) => {
         store.dispatch({
             type: type + '_ERROR',
             status: error.response.status
-        });
+		});
+		//请求失败回调
+		onError && onError('error');
 	})
 };
 
