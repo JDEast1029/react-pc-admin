@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {AppContainer} from 'react-hot-loader'; // AppContainer 是一个 HMR 必须的包裹(wrapper)组件
 import {Provider} from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import store from '../store/createStore';
 import routes from './routes';
@@ -13,6 +13,7 @@ import '../styles/color.scss';
 import '../styles/spacing.scss';
 import '../styles/font.scss';
 
+//browserHistory需要服务器配置支持
 const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
         return (
             <AppContainer>
                 <Provider store={store}>
-                     <Router history={history} routes={routes} />
+                     <Router history={hashHistory} routes={routes} />
                 </Provider>
             </AppContainer>
         );

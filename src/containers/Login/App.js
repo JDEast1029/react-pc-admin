@@ -8,6 +8,14 @@ const loginRoutes = [
                 callback(null, require('./Modules/Login').default);
             }, 'login');
         }
+    },
+    {
+        path: '/home',
+        getComponents: (nextState, callback) => {
+            require.ensure([], (require) => {
+                callback(null, require('./Modules/Home').default);
+            }, 'home');
+        }
     }
 ];
 
