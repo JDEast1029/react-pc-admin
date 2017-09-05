@@ -19,7 +19,7 @@ if(isDebug) {
         // DevTools.instrument()
     );
 } else {
-    enhancer = applyMiddleware(thunk, router);
+    enhancer = applyMiddleware(thunk, router, net);
 }
 
 // 创建 store

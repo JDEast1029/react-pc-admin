@@ -14,7 +14,7 @@ const net = (store) => (next) => (action) => {
 		onError
 	} = action;
 
-    //如果url为空，则不处理
+	//如果url为空，则不处理
     let url = API[type];
 	if (!url) {
 		return next(action);
