@@ -30,7 +30,6 @@ const net = (store) => (next) => (action) => {
         type: type + '_LOADING'
     });
 
-
 	if (method === 'GET') {
 		request = axios.get(url, {
 			params: {
@@ -75,8 +74,6 @@ const net = (store) => (next) => (action) => {
             type: type + '_ERROR',
             status: error.response.status
 		});
-		//请求失败回调
-		onError && onError('error');
 	})
 };
 

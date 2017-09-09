@@ -16,7 +16,7 @@ class Login extends Component {
     handleLogin() {
         let netParams = {
             type: types.LOGIN_GET,
-            method: 'get',
+            method: 'GET',
             params: {
                 id: '123'
             },

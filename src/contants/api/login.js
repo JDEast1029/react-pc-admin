@@ -3,7 +3,7 @@
  */
 
 const api = {
-    'LOGIN_GET': '/user',
+    'LOGIN_GET': '/api/login.json',
 };
 
 export default api;

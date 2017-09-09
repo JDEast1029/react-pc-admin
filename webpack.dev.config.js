@@ -49,7 +49,7 @@ module.exports = webpackMerge(baseConfig(), {
         clientLogLevel: 'none',
         open: true,
         hot: true,
-        port: 3000,
+        port: 9001,
         inline: true,
         compress: true,
         stats: {
@@ -58,6 +58,13 @@ module.exports = webpackMerge(baseConfig(), {
             warnings: true,
             modules: false,
             chunks: false
-        }
+        },
+		proxy: {
+			"/api": {
+				target: "http://localhost:3000",
+				// pathRewrite: {"^/api" : ""},
+				secure: false
+			}
+		},
     }
-})
+});
