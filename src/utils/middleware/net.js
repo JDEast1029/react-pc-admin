@@ -67,12 +67,12 @@ const net = (store) => (next) => (action) => {
 			onError && onError('error');
 		}
 	}).catch((error) => {
-        NProgress.done();
+		NProgress.done();
 
         //分发请求失败的actionType
         store.dispatch({
             type: type + '_ERROR',
-            status: error.response.status
+            status: error.response.status === 404 ? error.response.status : 'error'
 		});
 	})
 };

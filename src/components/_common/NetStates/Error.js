@@ -33,7 +33,7 @@ class Error extends Component {
 	}
 
     render() {
-        const { netState } = this.props;
+		const { netState } = this.props;
 
         if (netState === 404) {
         	return this.render404Error();
