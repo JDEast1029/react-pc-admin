@@ -1,16 +1,16 @@
-import loginRoutes from 'containers/Login/App';
-import homeRoutes from 'containers/Home/App';
+import loginRoutes from '../containers/Login/App';
+import layout from '../containers/Layout/App';
 
 const routes = [
-    //登陆页
-    ...loginRoutes,
-    //主页
-    ...homeRoutes,
-
     {
         path: '/',
         onEnter:(nextState, replace) => { replace('/login');}
     },
+    //登录页路由
+    ...loginRoutes,
+    //主页路由
+    ...layout,
+
     {
         path: '*',
         getComponents: (nextState, callback) => {
