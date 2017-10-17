@@ -16,16 +16,23 @@ class MenuList extends Component {
     router.push('/login')
   }
 
+  getSelectItem() {
+	  const { path } = this.props;
+	  return path.split('/');
+  }
+
   render() {
+  	const pathArray = this.getSelectItem();
+
     return (
       <Menu
         theme="dark"
-        defaultOpenKeys={['1']}
-        defaultSelectedKeys={['1']}
+        openKeys={[pathArray[1]]}                                 //打开二级菜单
+        selectedKeys={[pathArray[pathArray.length - 1]]}          //选中的Item
         mode="inline"
         onClick={this.handleOnItemClick}
       >
-        <Menu.Item key="login">
+        <Menu.Item key="home">
           <Icon type="dot-chart" />
           <span>首页</span>
         </Menu.Item>

@@ -23,7 +23,9 @@ class PageFrame extends Component {
   };
 
   render() {
-    const { router } = this.props;
+    const { router, location } = this.props;
+    const { pathname } = location;
+
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -34,7 +36,8 @@ class PageFrame extends Component {
           <div className="logo" />
 
           <MenuList 
-            router={router} 
+            router={router}
+			path={pathname}
           />
         </Sider>
         <Layout>
