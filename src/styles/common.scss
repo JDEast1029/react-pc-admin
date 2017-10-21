@@ -1,0 +1,9 @@
+/**
+ * 常用样式
+ */
+.scroll-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling:touch;          //解决ios页面滚动不流畅
+}

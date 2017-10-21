@@ -12,6 +12,8 @@ import '../styles/icon.scss';
 import '../styles/color.scss';
 import '../styles/spacing.scss';
 import '../styles/font.scss';
+import '../styles/layout.scss';
+import '../styles/animate.scss';
 
 //browserHistory需要服务器配置支持
 const history = syncHistoryWithStore(browserHistory, store);

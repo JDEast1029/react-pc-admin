@@ -1,0 +1,58 @@
+/**
+ * flex布局样式
+ */
+
+.g-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.g-flex-column {
+    @extend .g-flex;
+    flex-direction: column;
+}
+
+.g-flex-1 {
+    flex: 1;
+}
+
+/**
+ * justify-content
+ */
+.g-jc-c {
+    justify-content: center;
+}
+
+.g-jc-sb {
+    justify-content: space-between;
+}
+
+.g-jc-sa {
+    justify-content: space-around;
+}
+
+.g-jc-end {
+    justify-content: flex-end;
+}
+
+.g-jc-start {
+    justify-content: flex-start;
+}
+
+/**
+ * align-items
+ */
+.g-align-start {
+    align-items: flex-start;
+}
+
+.g-align-end {
+    align-items: flex-end;
+}
+
+.g-align-center {
+    align-items: center;
+}
+
+

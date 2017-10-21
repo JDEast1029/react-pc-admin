@@ -29,6 +29,7 @@ html {
     box-sizing: border-box;
     overflow-y: scroll; /* All browsers without overlaying scrollbars */
     -webkit-text-size-adjust: 100%; /* iOS 8+ */
+    color: #333;
 }
 
 body {
@@ -49,11 +50,6 @@ body {
 ::after {
     text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
     vertical-align: inherit;
-}
-
-* {
-    padding: 0; /* Reset `padding` and `margin` of all elements */
-    margin: 0;
 }
 
 img {
@@ -101,4 +97,13 @@ p {
 a{
     text-decoration: none;
     color: #333;
+}
+
+blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, input, lengend, li, ol, p, pre, td, textarea, th, ul {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-appearance: none;
 }
