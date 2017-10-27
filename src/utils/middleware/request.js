@@ -62,7 +62,7 @@ export const singleRequest = (store, next, action) => {
 			//分发请求成功的actionType
         	store.dispatch({
         	    type: type + '_SUCCESS',
-        	    data: response.data
+        	    data: response.data.data
         	});
 
         	//请求成功回调, 整个页面数据为空 显示<Empty /> 在success中判断

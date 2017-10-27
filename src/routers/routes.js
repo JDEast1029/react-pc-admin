@@ -1,6 +1,8 @@
 import loginRoutes from '../containers/Login/App';
 import layout from '../containers/Layout/App';
 
+import liveRoutes from '../containers/Live/App';
+
 const routes = [
     {
         path: '/',
@@ -8,6 +10,7 @@ const routes = [
     },
     //登录页路由
     ...loginRoutes,
+	...liveRoutes,
     //主页路由
     ...layout,
 

@@ -11,9 +11,9 @@ class MenuList extends Component {
 
   handleOnItemClick(e) {
     const { router } = this.props;
-    
+
     console.log(e, this.props.router);
-    router.push('/login')
+    router.push(`/${e.keyPath[0]}`)
   }
 
   getSelectItem() {
@@ -36,6 +36,10 @@ class MenuList extends Component {
           <Icon type="dot-chart" />
           <span>首页</span>
         </Menu.Item>
+		 <Menu.Item key="live">
+			 <Icon type="play-circle" />
+			 <span>直播</span>
+		 </Menu.Item>
       </Menu>
     );
   }
