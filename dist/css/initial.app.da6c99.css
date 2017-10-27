@@ -1,0 +1,401 @@
+#nprogress {
+  pointer-events: none; }
+  #nprogress .bar {
+    background: #29d;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.04rem; }
+  #nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 1rem;
+    height: 100%;
+    -webkit-box-shadow: 0 0 0.1rem #29d, 0 0 0.05rem #29d;
+            box-shadow: 0 0 0.1rem #29d, 0 0 0.05rem #29d;
+    opacity: 1.0;
+    -webkit-transform: rotate(3deg) translate(0, -0.04rem);
+    transform: rotate(3deg) translate(0, -0.04rem); }
+  #nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 0.15rem;
+    right: 0.15rem; }
+  #nprogress .spinner-icon {
+    width: 0.18rem;
+    height: 0.18rem;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border: solid 0.02rem transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 50%;
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+    animation: nprogress-spinner 400ms linear infinite; }
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative; }
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute; }
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+.logo {
+  height: 0.32rem;
+  background: #333;
+  border-radius: 0.06rem;
+  margin: 0.16rem; }
+
+.trigger:hover {
+  color: #108ee9;
+  cursor: pointer; }
+@charset "UTF-8";
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-y: scroll;
+  /* All browsers without overlaying scrollbars */
+  -webkit-text-size-adjust: 100%;
+  /* iOS 8+ */
+  color: #333; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei", "Helvetica";
+  background: #f5f5f9; }
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat;
+  /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit; }
+
+::before,
+::after {
+  text-decoration: inherit;
+  /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+  vertical-align: inherit; }
+
+img {
+  border-style: none;
+  /* Remove border when inside `a` element in IE 8/9/10 */
+  display: block; }
+
+input {
+  border-radius: 0; }
+
+textarea {
+  overflow: auto;
+  /* Internet Explorer 11+ */
+  resize: vertical;
+  /* Specify textarea resizability */ }
+
+/* Apply cursor pointer to button elements */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
+  cursor: pointer;
+  border-style: 0;
+  padding: 0; }
+
+/* Replace pointer cursor in disabled elements */
+[disabled] {
+  cursor: default; }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  /* Specify font inheritance of form elements */ }
+
+input,
+textarea,
+[contenteditable] {
+  border: none;
+  background-color: transparent;
+  color: #333;
+  /* 文本颜色 */
+  caret-color: #333;
+  /* 光标颜色 */ }
+
+input, textarea::-webkit-input-placeholder {
+  color: #a1a1a1; }
+
+div, span, p {
+  font-size: 0.2rem;
+  color: #333; }
+
+a {
+  text-decoration: none;
+  color: #333; }
+
+blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, input, lengend, li, ol, p, pre, td, textarea, th, ul {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+  word-break: break-all;
+  -webkit-appearance: none; }
+.icon {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden; }
+.g-black {
+  color: #333; }
+
+.g-white {
+  color: #ffffff; }
+
+.g-light-white {
+  color: #f5f5f5; }
+
+.g-gray {
+  color: #666; }
+.g-pd {
+  padding: 0.2rem; }
+
+.g-pd-s {
+  padding: 0.1rem; }
+
+.g-pd-lr {
+  padding: 0 0.2rem; }
+
+.g-pd-lr-10 {
+  padding: 0 0.1rem; }
+
+.g-pd-tb {
+  padding: 0.2rem 0; }
+
+.g-pd-tb-10 {
+  padding: 0.1rem 0; }
+
+.g-pd-l {
+  padding-left: 0.2rem; }
+
+.g-pd-l-10 {
+  padding-left: 0.1rem; }
+
+.g-pd-r {
+  padding-right: 0.2rem; }
+
+.g-pd-r-10 {
+  padding-right: 0.1rem; }
+
+.g-m {
+  margin: 0.2rem; }
+
+.g-m-lr {
+  margin: 0 0.2rem; }
+
+.g-m-lr-10 {
+  margin: 0 0.1rem; }
+
+.g-m-tb {
+  margin: 0.2rem 0; }
+
+.g-m-tb-10 {
+  margin: 0.1rem 0; }
+
+.g-m-l {
+  margin-left: 0.2rem; }
+
+.g-m-l-10 {
+  margin-left: 0.1rem; }
+
+.g-m-r {
+  margin-right: 0.2rem; }
+
+.g-m-r-10 {
+  margin-right: 0.1rem; }
+.g-fs-20 {
+  font-size: 0.2rem; }
+
+.g-fs-22 {
+  font-size: 0.22rem; }
+
+.g-fs-24 {
+  font-size: 0.24rem; }
+
+.g-fs-26 {
+  font-size: 0.26rem; }
+
+.g-fs-28 {
+  font-size: 0.28rem; }
+
+.g-fs-30 {
+  font-size: 0.3rem; }
+
+.g-fs-32 {
+  font-size: 0.32rem; }
+
+.g-fs-34 {
+  font-size: 0.34rem; }
+@charset "UTF-8";
+/**
+ * flex布局样式
+ */
+.g-flex, .g-flex-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.g-flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.g-col-1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1; }
+
+/**
+ * justify-content
+ */
+.g-jc-c {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.g-jc-sb {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.g-jc-sa {
+  -ms-flex-pack: distribute;
+      justify-content: space-around; }
+
+.g-jc-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+
+.g-jc-start {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+
+/**
+ * align-items
+ */
+.g-align-start {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start; }
+
+.g-align-end {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end; }
+
+.g-align-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+@charset "UTF-8";
+/**
+ * 动画库
+ */
+.slide-up {
+  -webkit-animation: g-opacity 1s ease, g-slide-up-fixed 0.8s ease;
+          animation: g-opacity 1s ease, g-slide-up-fixed 0.8s ease; }
+
+@-webkit-keyframes g-opacity {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes g-opacity {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes g-slide-up-fixed {
+  from {
+    -webkit-transform: translateY(0.5rem);
+            transform: translateY(0.5rem); }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@keyframes g-slide-up-fixed {
+  from {
+    -webkit-transform: translateY(0.5rem);
+            transform: translateY(0.5rem); }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@-webkit-keyframes g-slide-up {
+  from {
+    -webkit-transform: translateY(30%);
+            transform: translateY(30%); }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@keyframes g-slide-up {
+  from {
+    -webkit-transform: translateY(30%);
+            transform: translateY(30%); }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+@charset "UTF-8";
+/**
+ * 常用样式
+ */
+.scroll-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch; }
+
+.btn-adapt {
+  background-color: #33cd4e;
+  color: #ffffff;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  font-size: 0.3rem;
+  line-height: 0.4rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+/*# sourceMappingURL=../sourceMap/css/initial.app.da6c99.css.map*/

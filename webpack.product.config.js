@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const os = require('os');
 
 const baseConfig = require('./webpack_config/base');
@@ -52,6 +53,18 @@ module.exports = webpackMerge(baseConfig(), {
             .UglifyJsPlugin(config.uglifyJsConfig),
         new webpack
             .optimize
-            .CommonsChunkPlugin({names: ['vendor'], filename: 'js/common-[hash:6].js', minChunks: Infinity})
+            .CommonsChunkPlugin({names: ['vendor'], filename: 'js/common-[hash:6].js', minChunks: Infinity}),
+		//GZip
+		new CompressionPlugin({
+			asset: '[path].gz[query]',
+			algorithm: 'gzip',
+			test: new RegExp(
+				'\\.(' +
+				['js', 'scss', 'css'].join('|') +
+				')$'
+			),
+			threshold: 10240,
+			minRatio: 0.8
+		})
     ]
-})
+});

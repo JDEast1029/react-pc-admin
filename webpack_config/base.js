@@ -130,13 +130,20 @@ module.exports = function () {
             ]
         },
         plugins: [ // 依照模板生成 html
-            new HtmlWebpackPlugin({
-                template: TPL_PATH,
-                minify: {
-                    removeComments: true
-                },
-                cache: false
-            }),
+			new HtmlWebpackPlugin({
+				filename: 'index.html',    //生成的文件，从 output.path 开始 output.path + "/react.html"
+				template: TPL_PATH,  //读取的模板文件,这个路径是相对于当前这个配置文件的
+				inject: true, // 自动注入
+				minify: {
+					removeComments: true,        //去注释
+					collapseWhitespace: true,    //压缩空格
+					removeAttributeQuotes: true  //去除属性引用
+					// more options:
+					// https://github.com/kangax/html-minifier#options-quick-reference
+				},
+				//必须通过上面的 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
+				chunksSortMode: 'dependency'
+			}),
             /**
              * 将所有的入口 chunk(entry chunks)中引用的 *.css，移动到独立分离的 CSS 文件
              * 多个入口情况：
