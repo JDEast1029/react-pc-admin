@@ -6,29 +6,62 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
 
-import Empty from './Empty';
-import Error from './Error';
+import NetError from './NetError';
+import SystemError from './SystemError';
+import PageLoading from './PageLoading';
 import './NetStates.scss';
+
+/**
+ * 页面状态
+ * @type {{IDLE: number, PAGE_LOADING: number, NET_ERROR: number, SERVER_ERROR: number}}
+ */
+const PageStatus = {
+	IDLE: 0,
+	PAGE_LOADING: 1,
+	NET_ERROR: 2,
+	SYSTEM_ERROR: 3
+};
 
 class NetStates extends Component {
 
     renderView() {
-        const { netState, isEmpty } = this.props;
+		const { pageStatus } = this.props;
 
-        switch(netState) {
-            case 404:
-            case 'error':
-                return <Error netState={netState} />;
-            case 'success':
-            	if (isEmpty) {
-					return <Empty />;
-				}
-				return React.Children.map(this.props.children, child => child);
-            default:
-                return React.Children.map(this.props.children, child => child);
-                // return <div /> loading
-        }
+		switch (pageStatus.code) {
+			case PageStatus.NET_ERROR:
+				return (
+					<NetError />
+				);
+			case PageStatus.SYSTEM_ERROR:
+				return (
+					<SystemError />
+				);
+			case PageStatus.PAGE_LOADING:
+				return (
+					<PageLoading />
+				);
+			case PageStatus.IDLE:
+			default:
+				return this.renderIdlePage();
+		}
     }
+
+	/**
+	 * 渲染业务页面，并传递当前AppContainer 是否正在加载
+	 * @returns {*}
+	 */
+	renderIdlePage() {
+		const { pageStatus, children } = this.props;
+		return React.Children.map(children, (child) => {
+			if (!child) return;
+
+			return (
+				React.cloneElement(child, {
+					children: child.props.children,
+					isParentLoading: pageStatus.code === 1
+				}))
+		})
+	}
 
     render() {
         return (
