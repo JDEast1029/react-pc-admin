@@ -89,7 +89,20 @@ textarea {
     font: inherit; /* Specify font inheritance of form elements */
 }
 
-p {
+input,
+textarea,
+[contenteditable] {
+    border: none;
+    background-color: transparent;
+    color: #333; /* 文本颜色 */
+    caret-color: #333; /* 光标颜色 */
+}
+
+input, textarea::-webkit-input-placeholder {
+    color: #a1a1a1;
+}
+
+div, span, p {
     font-size: 20px;
     color: #333;
 }
