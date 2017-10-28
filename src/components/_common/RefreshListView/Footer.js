@@ -18,15 +18,15 @@ const footerNoMoreDataText = '已加载全部数据';
 class Footer extends Component {
 
 	render() {
-		const { refreshState } = this.props;
+		const { state } = this.props;
 
-		switch (refreshState) {
+		switch (state) {
 			case RefreshState.FOOTER_REFRESHING:
-				return <div>{footerRefreshingText}</div>;
+				return <div className="g-text-c g-pd-s">{footerRefreshingText}</div>;
 			case RefreshState.FAILURE:
-				return <div>{footerFailureText}</div>;
+				return <div className="g-text-c g-pd-s">{footerFailureText}</div>;
 			case RefreshState.NO_MORE_DATA:
-				return <div>{footerNoMoreDataText}</div>;
+				return <div className="g-text-c g-pd-s">{footerNoMoreDataText}</div>;
 			case RefreshState.IDLE:
 			default:
 				return <div/>;
