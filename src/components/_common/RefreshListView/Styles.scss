@@ -1,0 +1,17 @@
+/**
+ * 组件样式
+ */
+.refresh-float {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    align-items: flex-end;
+    .refresh-btn {
+        box-shadow: 5px 3px 10px #d4d4d4;
+        background-color: #fff;
+        height: 80px;
+        width: 80px;
+        border-radius: 40px;
+        border: 1px solid #d4d4d4;
+    }
+}

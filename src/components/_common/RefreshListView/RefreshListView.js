@@ -6,9 +6,12 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { Motion, spring } from 'react-motion';
 //components
+import FloatHeader from './FloatHeader';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+//styles
+import './Styles.scss';
 //const
 import { RefreshState } from './Constants';
 
@@ -18,6 +21,7 @@ class ScrollView extends Component {
 		onHeaderRefresh: PropTypes.func,
 		onFooterRefresh: PropTypes.func,
 		refreshState: PropTypes.number,
+		headerType: PropTypes.oneOf(['normal', 'float']),//下拉刷新组件类型
 		data: PropTypes.array,
 		onEndReachedThreshold: PropTypes.number,       //(0-1)注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
 	};
@@ -27,6 +31,7 @@ class ScrollView extends Component {
 		onHeaderRefresh: () => {},
 		onFooterRefresh: () => {},
 		refreshState: 0,
+		headerType: 'normal',
 		data: [],
 		onEndReachedThreshold: 0.2
 	};
@@ -62,7 +67,11 @@ class ScrollView extends Component {
 	componentWillReceiveProps(nextProps) {
 		switch (nextProps.refreshState) {
 			case RefreshState.HEADER_REFRESHING:
-				this.setState({distance: this.headerHeight});
+				if (nextProps.headerType === 'float') {
+					this.setState({distance: findDOMNode(this.header).clientHeight});
+				} else {
+					this.setState({distance: this.headerHeight});
+				}
 				break;
 			case RefreshState.IDLE:
 			default:
@@ -152,7 +161,14 @@ class ScrollView extends Component {
 	}
 
     render() {
-		const { refreshState, data, renderItem, scrollHeight, onFooterRefresh } = this.props;
+		const {
+			data,
+			renderItem,
+			scrollHeight,
+			headerType,
+			refreshState,
+			onFooterRefresh
+		} = this.props;
 		const { distance } = this.state;
 
         return (
@@ -170,10 +186,19 @@ class ScrollView extends Component {
 							onTouchMove={this.handleOnTouchMove}
 							onTouchEnd={this.handleOnTouchEnd}
 						>
-							<Header
-								ref={(ref) => this.header = ref}
-								height={distance}
-							/>
+							{
+								headerType === 'normal' ?
+									<Header
+										ref={(ref) => this.header = ref}
+										height={distance}
+									/>
+									:
+									<FloatHeader
+										ref={(ref) => this.header = ref}
+										height={distance}
+										refreshState={refreshState}
+									/>
+							}
 
 							<Main data={data} renderItem={renderItem} />
 
