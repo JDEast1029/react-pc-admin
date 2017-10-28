@@ -2,6 +2,7 @@ import loginRoutes from '../containers/Login/App';
 import layout from '../containers/Layout/App';
 
 import liveRoutes from '../containers/Live/App';
+import listRoutes from '../containers/List/App';
 
 const routes = [
     {
@@ -13,6 +14,8 @@ const routes = [
 	...liveRoutes,
     //主页路由
     ...layout,
+	//列表
+	...listRoutes,
 
     {
         path: '*',
