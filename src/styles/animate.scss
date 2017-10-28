@@ -1,23 +1,32 @@
 /**
  * 动画库
  */
-.slide-up {
-    animation: g-opacity 1s ease, g-slide-up-fixed 0.8s ease;
+.g-slide-up {
+    animation: a-opacity 1s ease, a-slide-up-fixed 0.8s ease;
 }
 
-@keyframes g-opacity
+.g-rotate {
+    animation: a-rotate 1s infinite linear
+}
+
+@keyframes a-opacity
 {
     from {opacity: 0;}
     to {opacity: 1;}
 }
 
-@keyframes g-slide-up-fixed {
+@keyframes a-slide-up-fixed {
     from {transform: translateY(50px);}
     to {transform: translateY(0);}
 }
 
-@keyframes g-slide-up {
+@keyframes a-slide-up {
     from {transform: translateY(30%);}
     to {transform: translateY(0);}
+}
+
+@keyframes a-rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 
