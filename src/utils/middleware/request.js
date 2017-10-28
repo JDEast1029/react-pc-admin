@@ -30,7 +30,8 @@ export const singleRequest = (store, next, action) => {
 		type,
 		params,
 		onSuccess,
-		onError
+		onError,
+		refreshState
 	} = action;
 
     let url = API[type];
@@ -49,8 +50,9 @@ export const singleRequest = (store, next, action) => {
     let request = null;
     //开始请求,分发正在请求的actionType
     NProgress.set(0.4);
-    store.dispatch({
-        type: type + '_LOADING'
+    next({
+        type: type + '_ON',
+		refreshState: refreshState
     });
 
     request = createRequest(method, url, params);
@@ -58,23 +60,24 @@ export const singleRequest = (store, next, action) => {
 	request && request.then((response) => {
 		NProgress.done();
 		
-		if (true) {
-			//分发请求成功的actionType
-        	store.dispatch({
-        	    type: type + '_SUCCESS',
-        	    data: response.data.data
-        	});
-
-        	//请求成功回调, 整个页面数据为空 显示<Empty /> 在success中判断
+		if (response.data.status) {
+        	//请求成功回调
 			onSuccess && onSuccess(response);
-		} else {
-			//请求失败回调
 			//分发请求成功的actionType
-			store.dispatch({
-				type: type + '_SUCCESS',
-				status: 'error'
-			});
-			onError && onError('error');
+			if (refreshState === 1) {
+				return next({
+					type: type + '_REFRESH',
+					data: response.data.data,
+				});
+			} else {
+				return next({
+					type: type + '_SUCCESS',
+					data: response.data.data,
+				});
+			}
+		} else {
+			//服务器返回的请求失败回调
+			onError && onError(response.data.msg);
 		}
 	}).catch((error) => {
 		NProgress.done();
@@ -82,10 +85,12 @@ export const singleRequest = (store, next, action) => {
 		if (error.response) {
 			//请求已经发出，但是服务器响应返回的状态吗不在2xx的范围内
 			//分发请求失败的actionType
-			store.dispatch({
+			return next({
 				type: type + '_ERROR',
-				status: error.response.status === 404 ? error.response.status : 'error'
+				code: error.response.status === 404 ? 2 : 3,
+				refreshState: refreshState
 			});
+
 		} else {
 			//一些错误是在设置请求的时候触发
 			console.log('Error', error.message);
