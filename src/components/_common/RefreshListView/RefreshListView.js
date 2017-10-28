@@ -9,14 +9,8 @@ import { Motion, spring } from 'react-motion';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-
-const RefreshState = {
-	IDLE: 0,
-	HEADER_REFRESHING: 1,
-	FOOTER_REFRESHING: 2,
-	NO_MORE_DATA: 3,
-	FAILURE: 4
-};
+//const
+import { RefreshState } from './Constants';
 
 class ScrollView extends Component {
 	static propTypes = {
@@ -24,7 +18,8 @@ class ScrollView extends Component {
 		onHeaderRefresh: PropTypes.func,
 		onFooterRefresh: PropTypes.func,
 		refreshState: PropTypes.number,
-		data: PropTypes.array
+		data: PropTypes.array,
+		onEndReachedThreshold: PropTypes.number,       //(0-1)注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
 	};
 
 	static defaultProps = {
@@ -32,7 +27,8 @@ class ScrollView extends Component {
 		onHeaderRefresh: () => {},
 		onFooterRefresh: () => {},
 		refreshState: 0,
-		data: []
+		data: [],
+		onEndReachedThreshold: 0.2
 	};
 
 	constructor(props) {
@@ -41,10 +37,11 @@ class ScrollView extends Component {
 			distance: 0
 		};
 		//手势事件
-		this.handleOnTouchStart = this.handleOnTouchStart.bind(this);
-		this.handleOnTouchMove = this.handleOnTouchMove.bind(this);
-		this.handleOnTouchEnd = this.handleOnTouchEnd.bind(this);
-		this.handleOnTouchCancel = this.handleOnTouchCancel.bind(this);
+		this.handleOnTouchStart          = this.handleOnTouchStart.bind(this);
+		this.handleOnTouchMove           = this.handleOnTouchMove.bind(this);
+		this.handleOnTouchEnd            = this.handleOnTouchEnd.bind(this);
+		//scroll监听
+		this.handleOnScroll              = this.handleOnScroll.bind(this);
 		//list状态事件
 		this.onHeaderRefresh             = this.onHeaderRefresh.bind(this);
 		this.onEndReached                = this.onEndReached.bind(this);
@@ -59,7 +56,19 @@ class ScrollView extends Component {
 
 	componentDidMount() {
 		//获取下拉加载组件高度
-		this.headerHeight = findDOMNode(this.header).clientHeight;
+		this.headerHeight = findDOMNode(this.header.refs.header).clientHeight;
+	}
+
+	componentWillReceiveProps(nextProps) {
+		switch (nextProps.refreshState) {
+			case RefreshState.HEADER_REFRESHING:
+				this.setState({distance: this.headerHeight});
+				break;
+			case RefreshState.IDLE:
+			default:
+				this.setState({distance: 0});
+				break;
+		}
 	}
 
 	/**
@@ -67,18 +76,22 @@ class ScrollView extends Component {
 	 * @param event
 	 */
 	handleOnTouchStart(event) {
-		this.touch = event.targetTouches[0];
-		this.clientY = this.touch.clientY;
-		this.clientX = this.touch.clientX;
+		if (findDOMNode(this.scroll).scrollTop === 0 && this.shouldStartHeaderRefreshing()) {
+			this.touch = event.targetTouches[0];
+			this.clientY = this.touch.clientY;
+			this.clientX = this.touch.clientX;
+		}
 	}
 
 	handleOnTouchMove(event) {
-		const { damping  } = this.props;
-		let clientY = event.targetTouches[0].clientY;
-		let clientX = event.targetTouches[0].clientX;
-		if (clientY > this.clientY && (clientY - this.clientY >= clientX - this.clientX)) {
-			let distance = (clientY - this.clientY) * damping * damping;
-			this.setState({distance});
+		if (findDOMNode(this.scroll).scrollTop === 0 && this.shouldStartHeaderRefreshing()) {
+			const {damping} = this.props;
+			let clientY = event.targetTouches[0].clientY;
+			let clientX = event.targetTouches[0].clientX;
+			if (clientY > this.clientY && (clientY - this.clientY >= clientX - this.clientX)) {
+				let distance = (clientY - this.clientY) * damping * damping;
+				this.setState({distance});
+			}
 		}
 	}
 
@@ -88,15 +101,23 @@ class ScrollView extends Component {
 			this.setState({distance: 0});
 		} else {
 			this.onHeaderRefresh();
-			this.setState({distance: this.headerHeight});
-			setTimeout(() => {
-				this.setState({distance: 0});
-			}, 2000)
 		}
 	}
 
-	handleOnTouchCancel(event) {
-
+	/**
+	 * 滚动事件监听
+	 */
+	handleOnScroll() {
+		const { onEndReachedThreshold } = this.props;
+		if (!!this.scroll) {
+			let scrollTop = findDOMNode(this.scroll).scrollTop;
+			let clientHeight = findDOMNode(this.scroll).clientHeight;
+			let scrollHeight = findDOMNode(this.scroll).scrollHeight;
+			// if (scrollTop + clientHeight >= scrollHeight - clientHeight * onEndReachedThreshold) {
+			if (scrollTop + clientHeight >= scrollHeight) {
+				this.onEndReached();
+			}
+		}
 	}
 
 	/**
@@ -131,7 +152,7 @@ class ScrollView extends Component {
 	}
 
     render() {
-		const { refreshState, data, renderItem, headerHeight } = this.props;
+		const { refreshState, data, renderItem, scrollHeight, onFooterRefresh } = this.props;
 		const { distance } = this.state;
 
         return (
@@ -139,17 +160,33 @@ class ScrollView extends Component {
 				{({distance}) => {
 					return (
 						<div
+							ref={(ref) => this.scroll = ref}
 							style={{
-								transform: `translateY(${distance - (headerHeight || 26)}px)`
+								height: scrollHeight || window.innerHeight
 							}}
+							className="scroll-list"
+							onScroll={this.handleOnScroll}
 							onTouchStart={this.handleOnTouchStart}
 							onTouchMove={this.handleOnTouchMove}
 							onTouchEnd={this.handleOnTouchEnd}
-							onTouchCancel={this.handleOnTouchCancel}
 						>
-							<Header ref={(ref) => this.header = ref} />
+							<Header
+								ref={(ref) => this.header = ref}
+								height={distance}
+							/>
+
 							<Main data={data} renderItem={renderItem} />
-							<Footer state={refreshState}/>
+
+							<Footer
+								state={refreshState}
+								onFooterRefresh={onFooterRefresh}
+							/>
+
+							<div style={{position: 'absolute', right: 50, bottom: 50}}
+								 onClick={() => {findDOMNode(this.scroll).scrollTop = 0}}
+							>
+								Top
+							</div>
 						</div>
 					)
 				}}
