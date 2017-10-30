@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { Motion, spring } from 'react-motion';
 //components
@@ -26,6 +27,7 @@ class ScrollView extends Component {
 		data: PropTypes.array,
 		onEndReachedThreshold: PropTypes.number,       //(0-1)注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
 		goTop: PropTypes.bool,                         //是否显示返回顶部按钮
+		container: PropTypes.string,                     //滚动容器class
 	};
 
 	static defaultProps = {
@@ -36,7 +38,8 @@ class ScrollView extends Component {
 		headerType: 'normal',
 		data: [],
 		onEndReachedThreshold: 0.2,
-		goTop: true
+		goTop: true,
+		container: '.scroll-container'
 	};
 
 	constructor(props) {
@@ -60,11 +63,17 @@ class ScrollView extends Component {
 		this.clientY = 0;
 		this.clientX = 0;
 		this.headerHeight = 0;
+
+		this.container = props.container;
 	}
 
 	componentDidMount() {
 		//获取下拉加载组件高度
 		this.headerHeight = findDOMNode(this.header.refs.header).clientHeight;
+
+		this.scrollContainer = (this.container)
+			? document.querySelector(this.container)
+			: window;
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -89,17 +98,64 @@ class ScrollView extends Component {
 	 */
 	handleOnTouchStart(event) {
 		if (findDOMNode(this.scroll).scrollTop === 0 && this.shouldStartHeaderRefreshing()) {
-			this.touch = event.targetTouches[0];
+			let e = event || window.event;
+			this.touch = e.targetTouches[0];
 			this.clientY = this.touch.clientY;
 			this.clientX = this.touch.clientX;
 		}
 	}
 
+	/**
+	 * 触摸滑动事件
+	 * ①(内容)向下拉到底部，不能往下拉，但是可以往上拉
+	 * ②(内容)向上拉到顶部，不能往上拉，但是可以往下拉
+	 * ③(内容)既不能往下拉也不能往下拉
+	 *
+	 * 1为允许，0为禁止，高位表示向上方向，低位表示向下方向
+	 *
+	 * -------------------------------------- 防止微信露底 ---------------------------------------
+	 * 可以拉的方向(height)                 拉的方向(touch)                 能否继续拉
+	 *        00 ③                            10 (下拉)                       0 (阻止)
+	 *        00 ③                            01 (上滑)                       0
+	 *        01 ②                            10                              0
+	 *        01 ②                            01                              1 (允许)
+	 *        10 ①                            10                              1
+	 *        10 ①                            01                              1
+	 * -------------------------------------- 防止微信露底 ---------------------------------------
+	 * @param event
+	 */
 	handleOnTouchMove(event) {
+		// 高位表示向上滚动, 底位表示向下滚动: 1容许 0禁止
+		let status = '11',
+			e = event || window.event,
+			currentY = e.touches[0].clientY,
+			ele = this.scrollContainer,
+			scrollTop = ele.scrollTop,
+			offsetHeight = ele.offsetHeight,
+			scrollHeight = ele.scrollHeight;
+		if (scrollTop === 0) {
+			// 如果内容小于容器则同时禁止上下滚动
+			status = offsetHeight >= scrollHeight ? '00' : '01';
+		} else if (scrollTop + offsetHeight >= scrollHeight) {
+			// 已经滚到底部了只能向上滚动
+			status = '10';
+		}
+		if (status !== '11') {
+			// 判断当前的滚动方向
+			let direction = currentY - this.clientY > 0 ? '10' : '01';
+			// console.log(direction);
+			// 操作方向和当前允许状态求与运算，运算结果为0，就说明不允许该方向滚动，则禁止默认事件，阻止滚动
+			if (!(parseInt(status, 2) & parseInt(direction, 2))) {
+				e.preventDefault();
+				e.stopPropagation();
+				// return;
+			}
+		}
+
 		if (findDOMNode(this.scroll).scrollTop === 0 && this.shouldStartHeaderRefreshing()) {
 			const {damping} = this.props;
-			let clientY = event.targetTouches[0].clientY;
-			let clientX = event.targetTouches[0].clientX;
+			let clientY = e.targetTouches[0].clientY;
+			let clientX = e.targetTouches[0].clientX;
 			if (clientY > this.clientY && (clientY - this.clientY >= clientX - this.clientX)) {
 				let distance = (clientY - this.clientY) * damping * damping;
 				this.setState({distance});
@@ -172,7 +228,9 @@ class ScrollView extends Component {
 			goTop,
 			refreshState,
 			onFooterRefresh,
-			header
+			header,
+			wrapper,
+			className
 		} = this.props;
 		const { distance } = this.state;
 
@@ -185,7 +243,13 @@ class ScrollView extends Component {
 							style={{
 								height: scrollHeight || window.innerHeight
 							}}
-							className="scroll-list"
+							className={
+								classnames(
+									("scroll-list"),
+									(className),
+									(wrapper&&wrapper.replace('.',''))
+								)
+							}
 							onScroll={this.handleOnScroll}
 							onTouchStart={this.handleOnTouchStart}
 							onTouchMove={this.handleOnTouchMove}
