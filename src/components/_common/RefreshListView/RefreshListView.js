@@ -10,6 +10,7 @@ import FloatHeader from './FloatHeader';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import Top from './Top';
 //styles
 import './Styles.scss';
 //const
@@ -24,6 +25,7 @@ class ScrollView extends Component {
 		headerType: PropTypes.oneOf(['normal', 'float']),//下拉刷新组件类型
 		data: PropTypes.array,
 		onEndReachedThreshold: PropTypes.number,       //(0-1)注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
+		goTop: PropTypes.bool,                         //是否显示返回顶部按钮
 	};
 
 	static defaultProps = {
@@ -33,7 +35,8 @@ class ScrollView extends Component {
 		refreshState: 0,
 		headerType: 'normal',
 		data: [],
-		onEndReachedThreshold: 0.2
+		onEndReachedThreshold: 0.2,
+		goTop: true
 	};
 
 	constructor(props) {
@@ -166,6 +169,7 @@ class ScrollView extends Component {
 			renderItem,
 			scrollHeight,
 			headerType,
+			goTop,
 			refreshState,
 			onFooterRefresh
 		} = this.props;
@@ -207,11 +211,14 @@ class ScrollView extends Component {
 								onFooterRefresh={onFooterRefresh}
 							/>
 
-							<div style={{position: 'absolute', right: 50, bottom: 50}}
-								 onClick={() => {findDOMNode(this.scroll).scrollTop = 0}}
-							>
-								Top
-							</div>
+							{goTop &&
+							<Top
+								onClick={(event) => {
+									event.preventDefault();
+									event.stopPropagation();
+									findDOMNode(this.scroll).scrollTop = 0
+								}}
+							/>}
 						</div>
 					)
 				}}
