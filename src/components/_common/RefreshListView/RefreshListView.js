@@ -171,7 +171,8 @@ class ScrollView extends Component {
 			headerType,
 			goTop,
 			refreshState,
-			onFooterRefresh
+			onFooterRefresh,
+			header
 		} = this.props;
 		const { distance } = this.state;
 
@@ -195,6 +196,8 @@ class ScrollView extends Component {
 									<Header
 										ref={(ref) => this.header = ref}
 										height={distance}
+										refreshState={refreshState}
+										content={header}
 									/>
 									:
 									<FloatHeader

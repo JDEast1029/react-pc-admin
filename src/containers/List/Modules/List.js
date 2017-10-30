@@ -36,7 +36,7 @@ class List extends Component {
 		return (
 			<RefreshListView
 				data={testReducer.data}
-				headerType={'float'}
+				headerType={'normal'}
 				refreshState={testReducer.status}
 				onHeaderRefresh={(refreshState) => {this.fetchData(refreshState)}}
 				onFooterRefresh={(refreshState) => {this.fetchData(refreshState)}}
