@@ -229,7 +229,7 @@ class ScrollView extends Component {
 			refreshState,
 			onFooterRefresh,
 			header,
-			wrapper,
+			container,
 			className
 		} = this.props;
 		const { distance } = this.state;
@@ -247,7 +247,7 @@ class ScrollView extends Component {
 								classnames(
 									("scroll-list"),
 									(className),
-									(wrapper&&wrapper.replace('.',''))
+									(container&&container.replace('.',''))
 								)
 							}
 							onScroll={this.handleOnScroll}
