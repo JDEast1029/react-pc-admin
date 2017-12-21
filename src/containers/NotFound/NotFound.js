@@ -6,13 +6,13 @@ import SymbolIcon from 'components/_common/Icon/SymbolIcon';
 import './NotFound.scss';
 
 class Empty extends Component {
-    render() {
-        return (
-            <div className="not-exist">
-                <SymbolIcon icon="icon-not-exist" className="not-exist-icon" />
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div className="not-exist">
+				<SymbolIcon icon="icon-not-exist" className="not-exist-icon" />
+			</div>
+		);
+	}
 }
 
 export default Empty;

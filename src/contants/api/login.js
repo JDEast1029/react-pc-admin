@@ -3,8 +3,8 @@
  */
 
 const api = {
-    'LOGIN_GET': '/api/login.json',
-    'HOME_GET': '/api/home.json',
+	'LOGIN_GET': '/api/login.json',
+	'HOME_GET': '/api/home.json',
 };
 
 export default api;

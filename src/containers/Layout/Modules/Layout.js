@@ -8,61 +8,61 @@ import MenuList from '../../../components/Layout/MenuList';
 import './styles.scss';
 
 class PageFrame extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapsed: false
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			collapsed: false
+		};
+		this.toggle = this.toggle.bind(this);
+	}
 
-  toggle() {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+	toggle() {
+		this.setState({
+			collapsed: !this.state.collapsed,
+		});
+	}
 
-  render() {
-    const { router, location } = this.props;
-    const { pathname } = location;
+	render() {
+		const { router, location } = this.props;
+		const { pathname } = location;
 
-    return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={this.state.collapsed}
-        >
-          <div className="logo" />
+		return (
+			<Layout style={{ minHeight: '100vh' }}>
+				<Sider
+					trigger={null}
+					collapsible
+					collapsed={this.state.collapsed}
+				>
+					<div className="logo" />
 
-          <MenuList 
-            router={router}
-			path={pathname}
-          />
-        </Sider>
-        <Layout>
-          <Header
-              toggle={this.toggle}  
-              collapsed={this.state.collapsed}            
-          />
+					<MenuList 
+						router={router}
+						path={pathname}
+					/>
+				</Sider>
+				<Layout>
+					<Header
+						toggle={this.toggle}  
+						collapsed={this.state.collapsed}            
+					/>
 
-          <Content style={{ margin: '0 16px' }}>
+					<Content style={{ margin: '0 16px' }}>
 
-            <Breadcrumb breadcrumb={[]} />
+						<Breadcrumb breadcrumb={[]} />
 
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              {this.props.children}
-            </div>
+						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+							{this.props.children}
+						</div>
 
-          </Content>
+					</Content>
 
-          <Footer style={{ textAlign: 'center' }}>
+					<Footer style={{ textAlign: 'center' }}>
             react-pc-admin ©2017 Created by AT
-          </Footer>
-        </Layout>
-      </Layout>
-    );
-  }
+					</Footer>
+				</Layout>
+			</Layout>
+		);
+	}
 }
 
 export default PageFrame;

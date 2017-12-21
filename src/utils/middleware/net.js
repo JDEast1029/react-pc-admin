@@ -9,9 +9,9 @@ import { singleRequest, concurrentRequest } from './request';
 
 const net = (store) => (next) => (action) => {
 	if (action.type === 'CONCURRENT_REQUEST') {
-		concurrentRequest(store, next, action)
+		concurrentRequest(store, next, action);
 	} else {
-		singleRequest(store, next, action)
+		singleRequest(store, next, action);
 	}
 };
 

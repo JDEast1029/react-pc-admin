@@ -10,10 +10,10 @@ class Main extends Component {
 		return (
 			<div className="g-flex-column">
 				{data.map((item, index) => {
-					return renderItem(item, index)
+					return renderItem(item, index);
 				})}
 			</div>
-		)
+		);
 	}
 }
 

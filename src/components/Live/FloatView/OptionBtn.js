@@ -11,7 +11,7 @@ class OptionBtn extends Component {
 				<span>+</span>
 				<span>-</span>
 			</div>
-		)
+		);
 	}
 }
 

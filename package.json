@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.dev.config.js",
-    "dist": "webpack --config ./webpack.product.config.js --progress"
+    "dist": "webpack --config ./webpack.product.config.js --progress",
+    "eslint:init": "eslint --init",
+    "eslint:watch": "eslint src webpack_config",
+    "eslint:fix": "npm run eslint:watch -- --fix"
   },
   "repository": {
     "type": "git",
@@ -48,6 +51,8 @@
     "compression-webpack-plugin": "^1.0.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "eslint": "^4.13.1",
+    "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "happypack": "^4.0.0",

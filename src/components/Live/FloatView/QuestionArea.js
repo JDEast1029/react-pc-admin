@@ -9,7 +9,7 @@ class QuestionArea extends Component {
 			<div className="btn-question">
 				问题区
 			</div>
-		)
+		);
 	}
 }
 

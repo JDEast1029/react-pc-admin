@@ -8,9 +8,9 @@ const initState = {
 	status: 0,
 };
 
-//相应的状态 数据和status有待确定
+// 相应的状态 数据和status有待确定
 const testReducer = (state = initState, action) => {
-	switch(action.type) {
+	switch (action.type) {
 		case types.LIST_GET + '_ON':
 			state = {
 				...state,
@@ -20,7 +20,7 @@ const testReducer = (state = initState, action) => {
 		case types.LIST_GET + '_SUCCESS':
 			state = {
 				data: [...state.data, ...action.data],
-				status: 0               //根据数据isEnd判断
+				status: 0               // 根据数据isEnd判断
 			};
 			return state;
 		case types.LIST_GET + '_ERROR':
@@ -34,7 +34,7 @@ const testReducer = (state = initState, action) => {
 			state = {
 				...state,
 				data: action.data,
-				status: 0               //根据数据isEnd判断
+				status: 0               // 根据数据isEnd判断
 			};
 			return state;
 		default:

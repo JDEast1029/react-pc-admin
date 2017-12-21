@@ -9,7 +9,7 @@ class SourceRecord extends Component {
 			<div className="g-white">
 				SourceRecord
 			</div>
-		)
+		);
 	}
 }
 

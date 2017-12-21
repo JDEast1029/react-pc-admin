@@ -11,7 +11,7 @@ class PageLoading extends Component {
 			<div className="net-state">
 				<p>loading。。。</p>
 			</div>
-		)
+		);
 	}
 }
 

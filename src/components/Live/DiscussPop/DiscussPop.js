@@ -9,7 +9,7 @@ class DiscussPop extends Component {
 			<div className="discuss-pop">
 				DiscussPop
 			</div>
-		)
+		);
 	}
 }
 

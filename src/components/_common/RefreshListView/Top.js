@@ -10,7 +10,7 @@ const Top = (props) => {
 		>
 			<i className="iconfont icon-go-top g-white g-fs-50" />
 		</div>
-	)
+	);
 };
 
 export default Top;

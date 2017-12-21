@@ -24,7 +24,7 @@ const PageStatus = {
 
 class NetStates extends Component {
 
-    renderView() {
+	renderView() {
 		const { pageStatus } = this.props;
 
 		switch (pageStatus.code) {
@@ -44,7 +44,7 @@ class NetStates extends Component {
 			default:
 				return this.renderIdlePage();
 		}
-    }
+	}
 
 	/**
 	 * 渲染业务页面，并传递当前AppContainer 是否正在加载
@@ -59,21 +59,21 @@ class NetStates extends Component {
 				React.cloneElement(child, {
 					children: child.props.children,
 					isParentLoading: pageStatus.code === 1
-				}))
-		})
+				}));
+		});
 	}
 
-    render() {
-        return (
-            <div>
-                {this.renderView()}
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div>
+				{this.renderView()}
+			</div>
+		);
+	}
 }
 
 NetStates.propTypes = {
-	isEmpty: PropType.bool,              //内容是否为空
+	isEmpty: PropType.bool,              // 内容是否为空
 };
 
 NetStates.defaultProps = {

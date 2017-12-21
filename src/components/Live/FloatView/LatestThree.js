@@ -23,13 +23,13 @@ class LatestThree extends Component {
 		this.state = {
 			list: [],
 			animateClass: ''
-		}
+		};
 	}
 
 	componentDidMount() {
 		setTimeout(() => {
-			this.setState({list: list, animateClass: 'slide-up'})
-		}, 2000)
+			this.setState({ list: list, animateClass: 'slide-up' });
+		}, 2000);
 	}
 
 	render() {
@@ -43,11 +43,11 @@ class LatestThree extends Component {
 							<li key={index} className="discuss-item">
 								<span className="g-white">{item.content}</span>
 							</li>
-						)
+						);
 					})
 				}
 			</ul>
-		)
+		);
 	}
 }
 

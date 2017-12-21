@@ -2,7 +2,7 @@
  * Created by AT on 2017/10/27.
  */
 import React, { Component } from 'react';
-import { RefreshState, FooterStateText} from './Constants';
+import { RefreshState, FooterStateText } from './Constants';
 
 class Footer extends Component {
 
@@ -16,7 +16,7 @@ class Footer extends Component {
 				return (
 					<div
 						className="g-text-c g-pd-s"
-						onClick={() => {onFooterRefresh(RefreshState.FOOTER_REFRESHING)}}
+						onClick={() => { onFooterRefresh(RefreshState.FOOTER_REFRESHING); }}
 					>
 						{FooterStateText.FAILURE}
 					</div>

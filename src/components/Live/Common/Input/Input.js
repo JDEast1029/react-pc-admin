@@ -1,7 +1,7 @@
 /**
  * 仿微信多行输入
  */
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 
 import './Styles.scss';
@@ -9,7 +9,7 @@ import './Styles.scss';
 class Input extends PureComponent {
 
 	render() {
-		const classes = classnames("input-container g-flex", {[this.props.className]: true});
+		const classes = classnames("input-container g-flex", { [this.props.className]: true });
 
 		return (
 			<div className={classes}>
@@ -23,7 +23,7 @@ class Input extends PureComponent {
 					<label htmlFor="question">提问</label>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

@@ -4,8 +4,8 @@ import loginReducer from './login/root';
 import testReducer from './test/test';
 
 const rootReducer = combineReducers({
-    routing: routerReducer,
-    loginReducer,
+	routing: routerReducer,
+	loginReducer,
 	testReducer
 });
 

@@ -12,7 +12,7 @@ class NetError extends Component {
 				<SymbolIcon icon="icon-404-1" className="error-icon" />
 				<p>网络连接异常，请点击刷新</p>
 			</div>
-		)
+		);
 	}
 }
 

@@ -31,7 +31,7 @@ class Header extends Component {
 	}
 
 	render() {
-		const { height=0 } = this.props;
+		const { height = 0 } = this.props;
 
 		return (
 			<div style={{
@@ -43,7 +43,7 @@ class Header extends Component {
 					{this.renderContent()}
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

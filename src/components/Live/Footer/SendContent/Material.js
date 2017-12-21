@@ -3,14 +3,14 @@
  */
 import React, { Component } from 'react';
 
-//通过appendChild加到外面的div中
+// 通过appendChild加到外面的div中
 class Material extends Component {
 	render() {
 		return (
 			<div>
 				Material
 			</div>
-		)
+		);
 	}
 }
 

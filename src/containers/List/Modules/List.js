@@ -2,18 +2,18 @@
  * Created by Administrator on 2017/10/28.
  */
 import React, { Component } from 'react';
-//redux
+// redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions/test';
 import * as types from '../../../contants/actionTypes/test';
-//components
+// components
 import RefreshListView from '../../../components/_common/RefreshListView/RefreshListView';
 
 class List extends Component {
 
 	componentDidMount() {
-		this.fetchData()
+		this.fetchData();
 	}
 
 	fetchData(refreshState = 1) {
@@ -24,7 +24,7 @@ class List extends Component {
 			method: 'get',
 			onSuccess: () => {},
 			onError: () => {}
-		}, refreshState)
+		}, refreshState);
 	}
 
 	render() {
@@ -36,13 +36,13 @@ class List extends Component {
 		return (
 			<RefreshListView
 				data={testReducer.data}
-				headerType={'normal'}
+				headerType={'float'}
 				refreshState={testReducer.status}
-				onHeaderRefresh={(refreshState) => {this.fetchData(refreshState)}}
-				onFooterRefresh={(refreshState) => {this.fetchData(refreshState)}}
-				renderItem={(item, index) => <div key={index} className="g-bg-white g-fs-28 g-pd" style={{height: '50px', width: '100%'}}>{item.name}</div>}
+				onHeaderRefresh={(refreshState) => { this.fetchData(refreshState); }}
+				onFooterRefresh={(refreshState) => { this.fetchData(refreshState); }}
+				renderItem={(item, index) => <div key={index} className="g-bg-white g-fs-28 g-pd" style={{ height: '50px', width: '100%' }}>{item.name}</div>}
 			/>
-		)
+		);
 	}
 }
 

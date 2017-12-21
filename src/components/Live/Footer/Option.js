@@ -9,7 +9,7 @@ class Option extends Component {
 			<div>
 				Option
 			</div>
-		)
+		);
 	}
 }
 

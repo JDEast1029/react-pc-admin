@@ -81,7 +81,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Microsoft YaHei", "Helvetica";
-  background: #f5f5f9; }
+  background-color: #f5f5f9 !important; }
 
 *,
 ::before,
@@ -178,6 +178,15 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
 
 .g-gray {
   color: #666; }
+
+.g-blue {
+  color: #108ee9; }
+
+.g-bg-white {
+  background-color: #ffffff; }
+
+.g-bg-light-white {
+  background-color: #f5f5f9; }
 .g-pd {
   padding: 0.2rem; }
 
@@ -257,6 +266,21 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
 
 .g-fs-34 {
   font-size: 0.34rem; }
+
+.g-fs-36 {
+  font-size: 0.36rem; }
+
+.g-fs-38 {
+  font-size: 0.38rem; }
+
+.g-fs-40 {
+  font-size: 0.4rem; }
+
+.g-fs-50 {
+  font-size: 0.5rem; }
+
+.g-fs-60 {
+  font-size: 0.6rem; }
 @charset "UTF-8";
 /**
  * flex布局样式
@@ -327,27 +351,43 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
+
+/**
+ * text-align
+ */
+.g-text-c {
+  text-align: center; }
+
+.g-text-l {
+  text-align: left; }
+
+.g-text-r {
+  text-align: right; }
 @charset "UTF-8";
 /**
  * 动画库
  */
-.slide-up {
-  -webkit-animation: g-opacity 1s ease, g-slide-up-fixed 0.8s ease;
-          animation: g-opacity 1s ease, g-slide-up-fixed 0.8s ease; }
+.g-slide-up {
+  -webkit-animation: a-opacity 1s ease, a-slide-up-fixed 0.8s ease;
+          animation: a-opacity 1s ease, a-slide-up-fixed 0.8s ease; }
 
-@-webkit-keyframes g-opacity {
+.g-rotate {
+  -webkit-animation: a-rotate 1s infinite linear;
+          animation: a-rotate 1s infinite linear; }
+
+@-webkit-keyframes a-opacity {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
 
-@keyframes g-opacity {
+@keyframes a-opacity {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
 
-@-webkit-keyframes g-slide-up-fixed {
+@-webkit-keyframes a-slide-up-fixed {
   from {
     -webkit-transform: translateY(0.5rem);
             transform: translateY(0.5rem); }
@@ -355,7 +395,7 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
 
-@keyframes g-slide-up-fixed {
+@keyframes a-slide-up-fixed {
   from {
     -webkit-transform: translateY(0.5rem);
             transform: translateY(0.5rem); }
@@ -363,7 +403,7 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
 
-@-webkit-keyframes g-slide-up {
+@-webkit-keyframes a-slide-up {
   from {
     -webkit-transform: translateY(30%);
             transform: translateY(30%); }
@@ -371,13 +411,29 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
 
-@keyframes g-slide-up {
+@keyframes a-slide-up {
   from {
     -webkit-transform: translateY(30%);
             transform: translateY(30%); }
   to {
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
+
+@-webkit-keyframes a-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes a-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 @charset "UTF-8";
 /**
  * 常用样式
@@ -398,4 +454,4 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-/*# sourceMappingURL=../sourceMap/css/initial.app.da6c99.css.map*/
+/*# sourceMappingURL=../sourceMap/css/initial.app.ccf55e.css.map*/

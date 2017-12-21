@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/10/20.
  */
 import React, { Component } from 'react';
-//components
+// components
 import SourceRecord from './SendContent/SourceRecord';
 import TextInput from './SendContent/TextInput';
 import Media from './SendContent/Media';
@@ -17,12 +17,12 @@ class SendContent extends Component {
 		this.handleSelectSource = this.handleSelect.bind(this, 'source');
 		this.handleSelectText = this.handleSelect.bind(this, 'text');
 		this.handleSelectMedia = this.handleSelect.bind(this, 'media');
-		this.handleSelectMaterial= this.handleSelect.bind(this, 'material');
+		this.handleSelectMaterial = this.handleSelect.bind(this, 'material');
 	}
 
 	handleSelect(type) {
 
-		this.setState({selectItem: type === this.state.selectItem ? '' : type})
+		this.setState({ selectItem: type === this.state.selectItem ? '' : type });
 	}
 
 	renderOptionView() {
@@ -70,10 +70,10 @@ class SendContent extends Component {
 					</li>
 				</ul>
 
-				{/*操作具体页面*/}
+				{/* 操作具体页面*/}
 				{this.renderOptionView()}
 			</div>
-		)
+		);
 	}
 }
 

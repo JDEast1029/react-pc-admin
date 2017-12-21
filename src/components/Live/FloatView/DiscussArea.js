@@ -11,7 +11,7 @@ class DiscussArea extends Component {
 				<LatestThree/>
 				<p className="btn-discuss">讨论区</p>
 			</div>
-		)
+		);
 	}
 }
 

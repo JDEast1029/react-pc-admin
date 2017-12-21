@@ -9,7 +9,7 @@ class Header extends Component {
 			<div className="flex-other live-header">
 				header
 			</div>
-		)
+		);
 	}
 }
 

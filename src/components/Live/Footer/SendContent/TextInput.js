@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/10/20.
  */
 import React, { PureComponent } from 'react';
-//components
+// components
 import Input from '../../Common/Input/Input';
 
 class TextInput extends PureComponent {
@@ -15,7 +15,7 @@ class TextInput extends PureComponent {
 				/>
 				<p className="btn-adapt">发送</p>
 			</div>
-		)
+		);
 	}
 }
 

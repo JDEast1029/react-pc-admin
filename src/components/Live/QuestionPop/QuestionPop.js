@@ -9,7 +9,7 @@ class QuestionPop extends Component {
 			<div className="question-pop">
 				QuestionPop
 			</div>
-		)
+		);
 	}
 }
 
