@@ -3,6 +3,7 @@ import layout from '../containers/Layout/App';
 
 import liveRoutes from '../containers/Live/App';
 import listRoutes from '../containers/List/App';
+import componentsRoutes from '../containers/Components/App';
 
 const routes = [
 	{
@@ -16,7 +17,8 @@ const routes = [
 	...layout,
 	// 列表
 	...listRoutes,
-
+	// 自定义组件列表
+	...componentsRoutes,
 	{
 		path: '*',
 		getComponents: (nextState, callback) => {

@@ -1,0 +1,21 @@
+.c-calendar {
+	._header {
+		background-color: #f6f6f6;
+		color: #9a9a9a;
+		padding: 20px 0;
+	}
+	._border-line {
+		border-bottom: 1px solid #e7e7e7;
+	}
+	._item {
+		padding: 20px 0;
+		line-height: 30px;
+		.__circle {
+			width: 82px;
+			height: 82px;
+			border-radius: 41px;
+			background-color: #fb596e;
+			color: #ffffff;
+		}
+	}
+}

@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.g-flex-ac {
+    display: flex;
+    align-items: center;
+}
+
 .g-flex-column {
     @extend .g-flex;
     flex-direction: column;
@@ -15,6 +20,7 @@
 
 .g-col-1 {
     flex: 1;
+    flex-shrink: 1
 }
 
 /**

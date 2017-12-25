@@ -22,10 +22,12 @@
   "homepage": "https://github.com/JDEast1029/react-pc-admin#readme",
   "dependencies": {
     "antd": "^2.12.8",
+    "antd-mobile": "^2.1.2",
     "autoprefixer": "^7.1.3",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
+    "moment": "^2.20.1",
     "nprogress": "^0.2.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
