@@ -10,7 +10,7 @@ export const getQuadratic = (topPointer = {x: 0, y: 0}, otherPointer = {x: 0, y:
 	return {
 		a,
 		b: 2 * a * (-topPointer.x),
-		c: Math.pow(topPointer.x, 2) + topPointer.y
+		c: a * Math.pow(topPointer.x, 2) + topPointer.y
 	}
 } 
 
