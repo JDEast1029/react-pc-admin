@@ -179,6 +179,9 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
 .g-gray {
   color: #666; }
 
+.g-gray-1 {
+  color: #999999; }
+
 .g-blue {
   color: #108ee9; }
 
@@ -296,6 +299,14 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
       -ms-flex-align: center;
           align-items: center; }
 
+.g-flex-ac {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
 .g-flex-column {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -305,7 +316,9 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
 .g-col-1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
-          flex: 1; }
+          flex: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1; }
 
 /**
  * justify-content
@@ -454,4 +467,4 @@ blockquote, body, button, dd, dl, dt, fieldset, h1, h2, h3, h4, h5, h6, hr, inpu
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-/*# sourceMappingURL=../sourceMap/css/initial.app.ccf55e.css.map*/
+/*# sourceMappingURL=../sourceMap/css/initial.app.2dbdc1.css.map*/
