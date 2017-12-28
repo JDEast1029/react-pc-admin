@@ -24,8 +24,8 @@ module.exports = webpackMerge(baseConfig(), {
          */
     entry: {
         app: [
-            'react-hot-loader/patch', 
-            'webpack/hot/only-dev-server', 
+            'babel-polyfill',
+            'react-hot-loader/patch',
             ENTRY_PATH
         ],
         vendor: config.vendor // 公共文件单独打包
