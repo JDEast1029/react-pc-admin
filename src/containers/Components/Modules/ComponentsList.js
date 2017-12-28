@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // components
 import Calendar from '../../../components/Components/Calendar/Calendar';
-import LuckyWheel from '../../../components/Components/LuckyWheel/LuckyWheel';
+// import LuckyWheel from '../../../components/Components/LuckyWheel/LuckyWheel';
+import LuckyWheel from 'lucky-wheel';
 
 class Container extends Component {
 	constructor(props) {

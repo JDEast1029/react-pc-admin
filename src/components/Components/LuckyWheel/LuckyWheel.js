@@ -153,7 +153,6 @@ class LuckyWheel extends Component {
 	render() {
 		const { chunkNum } = this.props;
 		const { angle } = this.state;
-		let chunkAngle = 360 / chunkNum;
 
 		return (
 			<div className="c-wheel-content">
@@ -174,14 +173,6 @@ class LuckyWheel extends Component {
 			</div>
 		);
 	}
-}
-
-LuckyWheel.propTypes = {
-	chunkNum: PropTypes.number,           // 格子数目
-};
-
-LuckyWheel.defaulType = {
-	chunkNum: 8,
 }
 
 export default LuckyWheel;
