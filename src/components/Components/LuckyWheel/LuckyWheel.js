@@ -30,7 +30,6 @@
  * />
  */
 import React, { Component } from 'react';
-import { Motion, spring } from 'react-motion';
 import PropTypes from 'prop-types';
 import { getQuadratic, getY, getSpeed, getSpeedY, easyIn } from './utils';
 import './Styles.scss';
