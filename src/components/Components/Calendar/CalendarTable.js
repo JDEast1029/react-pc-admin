@@ -2,50 +2,50 @@
  * 日历
  */
 import React, { Component } from 'react';
-import Item from './Item';
+import classnames from 'classnames';
+import { Motion, spring } from 'react-motion';
+import MonthPane from './MonthPane';
 import './Styles.scss';
 
-const rowNumber = 6;
-const colNumber = 7;
-
 class Calendar extends Component {
-
-	renderRow = (rowNum) => {
-		const { calendarData, actions, onChangeSignStatus } = this.props;
-		let rowData = calendarData.slice((rowNum - 1) * 7, rowNum * 7);
-
-		return (
-			<div key={rowNum} className="g-flex-ac g-white _border-line" style={{ width: '100%' }}>
-				{
-					rowData.map((item, index) => {
-						return (
-							<Item
-								key={rowNum + "" + index}
-								actions={actions}
-								itemData={item}
-								onChangeSignStatus={onChangeSignStatus}
-							/>
-						);
-					})
-				}
-			</div>
-		);
-	};
-
-	renderCalendar = () => {
-		let table = [];
-		for (let i = 0; i < rowNumber; i++) {
-			table[i] = this.renderRow(i + 1);
+	constructor(props) {
+		super(props);
+		this.state = {
+			move: props.moveDistance
 		}
+		this.paneSort = [0, 1, 2];
+	}
 
-		return (
-			<div className="g-flex-ac g-bg-white g-flex-column g-col-1">
-				{table}
-			</div>
-		);
-	};
+	componentWillReceiveProps(nextProps) {
+		// if (nextProps.moveDistance != this.props.moveDistance) {
+		// 	this.setState({move: nextProps.moveDistance});
+		// }
+	}
+
+	renderPane = () => {
+		const { calendarData,actions, onChangeSignStatus } = this.props;
+		// const { move } = this.state;
+		let panes = [];
+		// if (move > 0) { // 往左
+		// 	this.paneSort.unshift(this.paneSort.pop());
+		// } else if (move < 0) { // 往右
+		// 	this.paneSort.push(this.paneSort.shift());
+		// }
+		for(let i = 0; i < this.paneSort.length; i++) {
+			panes[i] = (
+				<MonthPane
+					key={i}
+					calendarData={calendarData[i]}
+					actions={actions}
+					onChangeSignStatus={onChangeSignStatus}
+				/>
+			)
+		}
+		return panes;
+	}
 
 	render () {
+		const { moveDirection } = this.props;
 		return (
 			<div className="c-calendar" style={{overflowX: 'hidden'}}>
 				<div className="_header g-flex-ac">
@@ -57,13 +57,10 @@ class Calendar extends Component {
 					<span className="g-col-1 g-text-c">五</span>
 					<span className="g-col-1 g-text-c">六</span>
 				</div>
-				<div className="g-flex-ac" style={{
-					transform: `translateX(-${window.innerWidth}px)`,
-					width: '300%'
-				}}>
-					<div className="g-flex-ac g-bg-white g-flex-column g-col-1"></div>
-					{ this.renderCalendar() }
-					<div className="g-flex-ac g-bg-white g-flex-column g-col-1"></div>
+				<div className={classnames(
+						"g-flex-ac _calendar_main"
+					)}>
+					{this.renderPane()}
 				</div>
 			</div>
 		);

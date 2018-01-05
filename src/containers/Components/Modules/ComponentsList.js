@@ -32,15 +32,15 @@ class Container extends Component {
 		
 		return (
 			<div>
-				{/* <Calendar /> */}
-				<LuckyWheel 
+				<Calendar />
+				{/* <LuckyWheel 
 					onLoadData={this.handleLoadData}
 					position={position}
 					areaNum={7}
 					cycle={10}
 					isComplete={isComplete}
 					onComplete={this.handleComplete}
-				/>
+				/> */}
 			</div>
 		);
 	}

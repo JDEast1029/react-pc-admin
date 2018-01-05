@@ -9,11 +9,67 @@ class Calendar extends Component {
 		this.state = {
 			date: []
 		}
+		this.direcrion = '';
+		this.lastSelectedDate = '';
 	}
 
 	
 	componentWillMount() {
-		this.getCalendarArray();
+		this.getCalendars();
+	}
+
+	getCalendars = (selectedDate) => {
+		let date, 
+		year, lastYear, nextYear,
+		month, lastMonth, nextMonth;
+		if (!selectedDate) {
+			date = new Date();
+			year = date.getFullYear();
+			month = parseInt(date.getMonth() + 1);// 0-11, 0为1月份
+		} else {
+			date = selectedDate.split('-');
+			year = parseInt(date[0]);
+			month = parseInt(date[1]);
+		}
+
+		if (!selectedDate) {
+			date = new Date();
+			year = date.getFullYear();
+			month = parseInt(date.getMonth() + 1);// 0-11, 0为1月份
+		} else {
+			date = selectedDate.split('-');
+			year = parseInt(date[0]);
+			month = parseInt(date[1]);
+		}
+		if (selectedDate) {
+			if (Date.parse(selectedDate) > Date.parse(this.lastSelectedDate)) {
+				this.direcrion = 'right';
+			} else if (Date.parse(selectedDate) < Date.parse(this.lastSelectedDate)) {
+				this.direcrion = 'left';
+			}
+		}
+		this.lastSelectedDate = `${year}-${month}`;
+
+		lastYear = year;
+		nextYear = year;
+		lastMonth = month - 1;
+		nextMonth = month + 1;
+
+		if (month === 1) {
+			lastYear = year - 1;
+			lastMonth = 12;
+		} else if (month === 12) {
+			nextYear = year + 1;
+			nextMonth = 1;
+		}
+
+		this.setState({
+			date: [
+				this.getCalendarArray(`${lastYear}-${lastMonth}`),
+				this.getCalendarArray(`${year}-${month}`),
+				this.getCalendarArray(`${nextYear}-${nextMonth}`),
+			]
+		})
 	}
 	
 
@@ -53,11 +109,11 @@ class Calendar extends Component {
 		// 生成日历数组
 		let firstWeek = this.getWeek(`${year}-${this.formatNum(month)}-1`); // 本月第一天是星期几
 		let dateArray = [
-			...lastMonthArray.slice(lastMonthArray.length - firstWeek, lastMonthArray.length),
+			...lastMonthArray.slice(lastMonthArray.length - (firstWeek === 0 ? 7 : firstWeek), lastMonthArray.length),
 			...currentMonthArray,
-			...nextMonthArray.slice(0, 42 - firstWeek - nextMonthArray.length)
+			...nextMonthArray.slice(0, 42 - firstWeek - currentMonthArray.length)
 		];
-		this.setState({date: dateArray});
+		return dateArray;
 	}
 
 	// 创建每个月天数的数组
@@ -116,6 +172,15 @@ class Calendar extends Component {
 		return date.getDay();
 	};
 
+	getMoveDistance = () => {
+		if (this.direcrion === 'right') {
+			return -window.innerWidth;
+		} else if (this.direcrion === 'left') {
+			return window.innerWidth;
+		}
+		return 0;
+	};
+
 	render() {
 		const { onChangeDate } = this.props;
 		const { date } = this.state;
@@ -123,10 +188,12 @@ class Calendar extends Component {
 		return (
 			<div>
 				<DateSelected
-					onChangeDate={this.getCalendarArray}
+					onChangeDate={this.getCalendars}
 				/>
 				<CalendarTable
 					calendarData={date}
+					moveDirection={this.direcrion}
+					moveDistance={this.getMoveDistance()}
 				/>
 			</div>
 		);
