@@ -8,7 +8,8 @@
     "dist": "webpack --config ./webpack.product.config.js --progress",
     "eslint:init": "eslint --init",
     "eslint:watch": "eslint src webpack_config",
-    "eslint:fix": "npm run eslint:watch -- --fix"
+    "eslint:fix": "npm run eslint:watch -- --fix",
+    "postinstall": "cp .hooks/* .git/hooks/"
   },
   "repository": {
     "type": "git",
