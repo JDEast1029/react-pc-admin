@@ -10,20 +10,20 @@ class Container extends Component {
 		this.state = {
 			position: 0,
 			isComplete: false
-		}
+		};
 	}
 
 	handleLoadData = () => {
 		setTimeout(() => {
 			this.setState({
-				position: Math.floor(Math.random()*10),
+				position: Math.floor(Math.random() * 10),
 				isComplete: true
-			})
+			});
 		}, 1000);
 	}
 
 	handleComplete = () => {
-		this.setState({isComplete: false})
+		this.setState({ isComplete: false });
 	}
 
 	render() {

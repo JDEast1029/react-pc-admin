@@ -8,7 +8,7 @@ class Calendar extends Component {
 		super(props);
 		this.state = {
 			date: []
-		}
+		};
 		this.direcrion = '';
 		this.lastSelectedDate = '';
 	}
@@ -20,8 +20,8 @@ class Calendar extends Component {
 
 	getCalendars = (selectedDate) => {
 		let date, 
-		year, lastYear, nextYear,
-		month, lastMonth, nextMonth;
+			year, lastYear, nextYear,
+			month, lastMonth, nextMonth;
 		if (!selectedDate) {
 			date = new Date();
 			year = date.getFullYear();
@@ -69,15 +69,15 @@ class Calendar extends Component {
 				this.getCalendarArray(`${year}-${month}`),
 				this.getCalendarArray(`${nextYear}-${nextMonth}`),
 			]
-		})
+		});
 	}
 	
 
 	getCalendarArray = (selectedDate) => {
 		let date, 
-		year, lastYear, nextYear,
-		month, lastMonth, nextMonth,
-		lastMonthArray, currentMonthArray, nextMonthArray;
+			year, lastYear, nextYear,
+			month, lastMonth, nextMonth,
+			lastMonthArray, currentMonthArray, nextMonthArray;
 
 		if (!selectedDate) {
 			date = new Date();
